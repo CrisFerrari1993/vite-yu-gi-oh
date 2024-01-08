@@ -1,12 +1,15 @@
 <script>
 export default {
-    name: 'SingleCard'
+    name: 'SingleCard',
+    props: {
+        info: Object
+    }
 }
 </script>
 
 <template>
     <div class="text-center">
-        <img class="img-fluid mb-3" src="https://images.ygoprodeck.com/images/cards/34541863.jpg" alt="">
+        <img class="img-fluid mb-3" :src="info.card_images.image_url" :alt="info.name">
         <h4>Nome carta</h4>
         <span>Tipo Carta</span>
     </div>
