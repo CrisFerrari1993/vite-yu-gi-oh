@@ -1,9 +1,16 @@
 <script>
+// import axios
+import axios from 'axios';
+//import children components
 import AppHeader from './components/AppHeader.vue';
+import CardsList from './components/CardsList.vue';
+
+import { store } from './store';
 
 export default {
   components: {
-    AppHeader
+    AppHeader,
+    CardsList
   }
 }
 </script>
@@ -11,7 +18,7 @@ export default {
 <template>
   <AppHeader />
   <main>
-
+    <CardsList />
   </main>
 </template>
 
