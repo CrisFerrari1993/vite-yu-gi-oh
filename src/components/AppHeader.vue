@@ -16,6 +16,7 @@ header {
     background-color: white;
     display: flex;
     align-items: center;
+    margin-bottom: 1rem;
 
     img {
         width: 50px;

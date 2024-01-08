@@ -9,15 +9,15 @@ export default {
 
 <template>
     <div class="text-center">
-        <img class="img-fluid mb-3" :src="info.card_images.image_url" :alt="info.name">
-        <h4>Nome carta</h4>
-        <span>Tipo Carta</span>
+        <img class="img-fluid mb-3" :src="info.card_images[0].image_url" :alt="info.name">
+        <h4>{{ info.name }}</h4>
+        <span>{{ info.type }}</span>
     </div>
 </template>
 
 <style lang="scss" scoped>
 h4 {
-    text-transform: capitalize;
+    text-transform: uppercase;
     color: white;
 
     &::after {
@@ -25,7 +25,7 @@ h4 {
         display: block;
         width: 40px;
         height: 1px;
-        margin: 1rem auto;
+        text-wrap: nowrap;
     }
 }
 </style>
