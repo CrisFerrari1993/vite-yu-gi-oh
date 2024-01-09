@@ -1,18 +1,17 @@
 <script>
-// import axios
-import axios from 'axios';
-//import children components
+import { store } from "./store.js";
+import axios from "axios";
 import AppHeader from './components/AppHeader.vue';
+import DropDown from './components/DropDown.vue';
 import CardsList from './components/CardsList.vue';
-import AppSearch from './components/AppSearch.vue';
 
-import { store } from './store';
+
 
 export default {
   components: {
     AppHeader,
-    CardsList,
-    AppSearch,
+    DropDown,
+    CardsList
   },
   data() {
     return {
@@ -23,33 +22,46 @@ export default {
     getCards() {
       let myUrl = store.apiURL;
 
-      if (store.searchText !== '') {
-        myUrl += `?archetype=${store.searchText}`
+      if (store.archSelect !== "") {
+        myUrl += `?archetype=${store.archSelect}` //Filter based on selected Archetype
+      } else {
+        myUrl += "?num=20&offset=0" //Filter just 20 elements
       }
-
-      axios
-        .get(myUrl)
-        .then((res => {
-          store.cardList = res.data.data;
-          console.log(res.data.data);
-        }))
-        .catch((err) => {
-          console.log('Errori', err);
-        });
+      axios.get(myUrl)
+        .then(res => {
+          store.cardsList = res.data.data
+          console.log(store.cardsList);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    },
+    archetypeList() {
+      axios.get(store.apiArchURL)
+        .then(res => {
+          store.archList = res.data
+          console.log(store.archList);
+        })
     }
   },
   created() {
     this.getCards();
+    this.archetypeList();
   }
+
 }
 </script>
 
 <template>
-  <AppHeader />
-  <main>
-    <AppSearch />
-    <CardsList />
-  </main>
+  <AppHeader message="Yu-Gi-Oh Api" />
+
+  <!-- Dropdown section -->
+  <div class="container">
+    <DropDown @archSelected="getCards" />
+  </div>
+
+  <!-- Cards section -->
+  <CardsList />
 </template>
 
 <style lang="scss">
