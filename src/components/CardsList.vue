@@ -1,40 +1,43 @@
 <script>
+import { store } from "../store.js";
 import SingleCard from './SingleCard.vue';
-
-// store import
-import { store } from '../store';
 
 export default {
     name: 'CardsList',
     components: {
-        SingleCard
+        SingleCard,
     },
     data() {
         return {
             store,
         }
+    },
+    computed: {
+        cardsNumber() {
+            return store.cardsList.length;
+        }
     }
 }
+
 </script>
 
 <template>
-    <section class="container">
-        <div class="row bg-black text-white py-2">
-            <h5 class="m-0 fw-bold">Find 39 Cards</h5>
-        </div>
-        <div class="row bg-white">
-            <div v-for="card in store.cardList" :key="card.id" class="card mx-5 mb-4 col-6 col-md-4 col-lg-2">
-                <SingleCard :info="card" />
+    <section class="container bg-white mb-5 p-5">
+
+        <div class="row justify-center">
+            <div class="cardCounter p-2 text-white">Found {{ this.cardsNumber }} cards
+                <span v-if="store.archSelect !== ''">with archetype {{ store.archSelect }}</span>
             </div>
+
+            <!-- Cards -->
+            <SingleCard v-for="singleCard in store.cardsList" :key="singleCard.id" :details="singleCard" />
         </div>
+
     </section>
 </template>
 
 <style lang="scss" scoped>
-.container {
-
-    .card {
-        background-color: #fcac00;
-    }
+.cardCounter {
+    background-color: #212529;
 }
 </style>
