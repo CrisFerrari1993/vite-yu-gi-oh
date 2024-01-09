@@ -1,31 +1,31 @@
 <script>
+
 export default {
     name: 'SingleCard',
     props: {
-        info: Object
+        details: Object,
     }
 }
+
 </script>
 
 <template>
-    <div class="text-center">
-        <img class="img-fluid mb-3" :src="info.card_images[0].image_url" :alt="info.name">
-        <h4>{{ info.name }}</h4>
-        <span>{{ info.archetype }}</span>
+    <!-- Single Card -->
+    <div class="text-center p-2 col-xl-2 col-lg-3 col-md-4 col-sm-6 shadow rounded g-2">
+        <div class="singleCard">
+            <a href="#">
+                <img class="img-fluid" :src="details.card_images[0].image_url" alt="Immagine card" loading="lazy">
+                <div class="p-2">
+                    <h6 class="text-white">{{ details.name.toUpperCase() }}</h6>
+                    <div>{{ details.archetype }}</div>
+                </div>
+            </a>
+        </div>
     </div>
 </template>
-
 <style lang="scss" scoped>
-h4 {
-    text-transform: uppercase;
-    color: white;
-
-    &::after {
-        content: '';
-        display: block;
-        width: 40px;
-        height: 1px;
-        text-wrap: nowrap;
-    }
+.singleCard {
+    background-color: #d48f38;
+    height: 100%;
 }
 </style>
