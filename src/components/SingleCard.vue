@@ -11,7 +11,7 @@ export default {
     <div class="text-center">
         <img class="img-fluid mb-3" :src="info.card_images[0].image_url" :alt="info.name">
         <h4>{{ info.name }}</h4>
-        <span>{{ info.type }}</span>
+        <span>{{ info.archetype }}</span>
     </div>
 </template>
 

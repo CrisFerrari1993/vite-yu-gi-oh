@@ -18,11 +18,6 @@ export default {
 </script>
 
 <template>
-    <aside class="container my-3">
-        <select name="" id="">
-            <option value="Alien">Alien</option>
-        </select>
-    </aside>
     <section class="container">
         <div class="row bg-black text-white py-2">
             <h5 class="m-0 fw-bold">Find 39 Cards</h5>

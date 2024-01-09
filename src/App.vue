@@ -4,13 +4,15 @@ import axios from 'axios';
 //import children components
 import AppHeader from './components/AppHeader.vue';
 import CardsList from './components/CardsList.vue';
+import AppSearch from './components/AppSearch.vue';
 
 import { store } from './store';
 
 export default {
   components: {
     AppHeader,
-    CardsList
+    CardsList,
+    AppSearch,
   },
   data() {
     return {
@@ -19,8 +21,14 @@ export default {
   },
   methods: {
     getCards() {
+      let myUrl = store.apiURL;
+
+      if (store.searchText !== '') {
+        myUrl += `?archetype=${store.searchText}`
+      }
+
       axios
-        .get(store.apiURL)
+        .get(myUrl)
         .then((res => {
           store.cardList = res.data.data;
           console.log(res.data.data);
@@ -39,6 +47,7 @@ export default {
 <template>
   <AppHeader />
   <main>
+    <AppSearch />
     <CardsList />
   </main>
 </template>
